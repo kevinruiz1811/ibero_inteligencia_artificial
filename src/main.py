@@ -6,7 +6,7 @@ if __name__ == '__main__':
     res = rf.a_star('A', 'C')
 
     if res is None:
-        print("⚠️ No se encontró ruta entre A y C")
+        print("No se encontró ruta entre A y C")
     else:
         print('Mejor ruta encontrada:')
         for node, line in res['path']:

@@ -1,4 +1,3 @@
-# search.py
 import heapq
 from math import sqrt
 
@@ -9,7 +8,7 @@ class RouteFinder:
         coords: diccionario {nodo: (x, y)} para heurística euclidiana
         transfer_penalty: penalización (en minutos) por cambiar de línea
         """
-        self.graph = {}  # node -> list of (neighbor, line, travel_time, distance)
+        self.graph = {}
         self.coords = coords or {}
         self.transfer_penalty = transfer_penalty
 
@@ -23,7 +22,8 @@ class RouteFinder:
         if n1 in self.coords and n2 in self.coords:
             x1, y1 = self.coords[n1]
             x2, y2 = self.coords[n2]
-            return sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2) * 2.0  # factor para aproximar minutos
+            # factor para aproximar minutos
+            return sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2) * 2.0 
         return 0
 
     def neighbors(self, node):
@@ -34,7 +34,8 @@ class RouteFinder:
         Busca la mejor ruta entre start y goal usando A*.
         Devuelve un diccionario con 'path' y 'cost_minutes' o None si no hay ruta.
         """
-        start_state = (start, None)  # (nodo actual, línea actual)
+        # (nodo actual, línea actual)
+        start_state = (start, None)
         open_heap = []
         heapq.heappush(open_heap, (0 + self.heuristic(start, goal), 0, start_state, []))
         visited = set()
